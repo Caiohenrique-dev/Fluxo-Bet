@@ -6,7 +6,7 @@ import time
 from google import genai
 
 # ==========================================
-# CHAVE DE API — vem do ambiente (.env), nunca hardcoded
+# chave api vem do ambiente (.env)
 # ==========================================
 CHAVE_API = os.environ.get('GEMINI_API_KEY')
 if not CHAVE_API:
@@ -21,7 +21,7 @@ MODELO_ATUAL = "gemini-2.5-flash"
 
 
 # ==========================================
-# FUNÇÃO DE PROTEÇÃO (RETRY COM BACKOFF)
+# função de proteção (retryv com BACKOFF)
 # ==========================================
 def chamar_gemini_com_retry(prompt, max_tentativas=5):
     """
@@ -51,7 +51,7 @@ def chamar_gemini_com_retry(prompt, max_tentativas=5):
 
 
 # ==========================================
-# FUNÇÕES DE ANÁLISE
+# funções de analise 
 # ==========================================
 
 def processar_analise_chat(texto_aposta):
@@ -146,7 +146,7 @@ def selecionar_melhores_jogos_ia(jogos_hoje, perfil_risco):
 
 
 # ==========================================
-# FUNÇÃO PARA A PÁGINA DE DETALHES
+# função pra pag detalhes
 # ==========================================
 def gerar_insights_detalhados(jogo):
     """Gera mercados especiais e análise técnica reais"""
