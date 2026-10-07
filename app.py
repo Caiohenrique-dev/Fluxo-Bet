@@ -22,10 +22,10 @@ caminho_env = os.path.join(basedir, '.env')
 
 load_dotenv(caminho_env, override=True)
 
-# Funções da IA externalizadas
+
 from ia_fluxo import processar_analise_chat, gerar_analise_bilhete, selecionar_melhores_jogos_ia
 
-# Importações para envio de e-mail e tokens
+
 from itsdangerous import URLSafeTimedSerializer
 import smtplib
 from email.mime.text import MIMEText
@@ -65,12 +65,7 @@ except ImportError:
 
 app = Flask(__name__)
 
-# ==========================================
-# CONFIGURAÇÕES DE SEGURANÇA E API (VIA ENV)
-# Nenhum valor sensível tem fallback hardcoded.
-# O app falha ao iniciar se algo essencial faltar.
-# ==========================================
-
+# confi de segurança e api (via env)
 
 def obrigatoria(nome_var):
     valor = os.environ.get(nome_var)
@@ -115,7 +110,7 @@ db = SQLAlchemy(app)
 
 
 # ==========================================
-# MODELOS
+#modelos
 # ==========================================
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -195,7 +190,7 @@ CACHE_BILHETES = {
 TEMPO_CACHE_HORAS = 8
 
 # ==========================================
-# LÓGICA DE APOSTAS E JOGOS
+# logica de apostas e jogos
 # ==========================================
 
 
@@ -234,7 +229,7 @@ def gerar_jogos_simulados():
 
 
 # ==========================================
-# SISTEMA DE CACHE (Economia de requisições)
+# sistema de cache (p economizar requisições)
 # ==========================================
 CACHE_JOGOS = {
     "dados": [],
@@ -481,7 +476,7 @@ def enviar_email_recuperacao(destinatario, link_recuperacao):
 
 
 # ==========================================
-# ROTAS PÚBLICAS E AUTENTICAÇÃO
+# rotas publicas e auntenticação
 # ==========================================
 
 @app.before_request
@@ -775,7 +770,7 @@ def alterar_senha():
 
 
 # ==========================================
-# ROTAS DA IA (CHAT E BILHETES)
+# rotas da ia (chat e bilhetes)
 # ==========================================
 
 @app.route('/api/analisar-aposta', methods=['POST'])
@@ -1141,7 +1136,7 @@ def odd_de_ouro():
 
 
 # ==========================================
-# ROTAS DE PAGAMENTO (ASAAS)
+# rotas de pagamento do banco assas 
 # ==========================================
 
 @app.route('/checkout/<plano_escolhido>')
@@ -1280,7 +1275,7 @@ def webhook_asaas():
 
 
 # ==========================================
-# ÁREA ADMINISTRATIVA
+# area administrativa 
 # ==========================================
 
 def admin_blindado(f):
@@ -1367,7 +1362,7 @@ def admin_delete_user(id):
 
 
 # ==========================================
-# ROTAS DE MANUTENÇÃO (SOMENTE ADMIN)
+# rotas de manutenção (somente admin)
 # ==========================================
 
 @app.route('/forcar-atualizacao')
